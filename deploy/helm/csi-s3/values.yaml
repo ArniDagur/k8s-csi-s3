@@ -53,3 +53,24 @@ hostNetwork:
 nodeSelector: {}
 
 kubeletPath: /var/lib/kubelet
+
+# Resource limits configuration (per container)
+resourceLimits:
+  node:
+    registrar:
+      cpuRequests: "100m"
+      cpuLimits: "1"
+      memory: "64Mi"
+    csi:
+      cpuRequests: "100m"
+      cpuLimits: "1"
+      memory: "64Mi"
+  controller:
+    provisioner:
+      cpuRequests: "100m"
+      cpuLimits: "1"
+      memory: "64Mi"
+    csi:
+      cpuRequests: "100m"
+      cpuLimits: "1"
+      memory: "64Mi"

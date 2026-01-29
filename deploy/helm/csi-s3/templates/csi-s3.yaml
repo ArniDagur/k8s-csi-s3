@@ -70,6 +70,27 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+          {{- if or .Values.resourceLimits.node.registrar.cpuRequests .Values.resourceLimits.node.registrar.cpuLimits .Values.resourceLimits.node.registrar.memory }}
+          resources:
+            {{- if or .Values.resourceLimits.node.registrar.cpuRequests .Values.resourceLimits.node.registrar.memory }}
+            requests:
+              {{- if .Values.resourceLimits.node.registrar.cpuRequests }}
+              cpu: {{ .Values.resourceLimits.node.registrar.cpuRequests }}
+              {{- end }}
+              {{- if .Values.resourceLimits.node.registrar.memory }}
+              memory: {{ .Values.resourceLimits.node.registrar.memory }}
+              {{- end }}
+            {{- end }}
+            {{- if or .Values.resourceLimits.node.registrar.cpuLimits .Values.resourceLimits.node.registrar.memory }}
+            limits:
+              {{- if .Values.resourceLimits.node.registrar.cpuLimits }}
+              cpu: {{ .Values.resourceLimits.node.registrar.cpuLimits }}
+              {{- end }}
+              {{- if .Values.resourceLimits.node.registrar.memory }}
+              memory: {{ .Values.resourceLimits.node.registrar.memory }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
           volumeMounts:
             - name: plugin-dir
               mountPath: /csi
@@ -94,6 +115,27 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+          {{- if or .Values.resourceLimits.node.csi.cpuRequests .Values.resourceLimits.node.csi.cpuLimits .Values.resourceLimits.node.csi.memory }}
+          resources:
+            {{- if or .Values.resourceLimits.node.csi.cpuRequests .Values.resourceLimits.node.csi.memory }}
+            requests:
+              {{- if .Values.resourceLimits.node.csi.cpuRequests }}
+              cpu: {{ .Values.resourceLimits.node.csi.cpuRequests }}
+              {{- end }}
+              {{- if .Values.resourceLimits.node.csi.memory }}
+              memory: {{ .Values.resourceLimits.node.csi.memory }}
+              {{- end }}
+            {{- end }}
+            {{- if or .Values.resourceLimits.node.csi.cpuLimits .Values.resourceLimits.node.csi.memory }}
+            limits:
+              {{- if .Values.resourceLimits.node.csi.cpuLimits }}
+              cpu: {{ .Values.resourceLimits.node.csi.cpuLimits }}
+              {{- end }}
+              {{- if .Values.resourceLimits.node.csi.memory }}
+              memory: {{ .Values.resourceLimits.node.csi.memory }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
           volumeMounts:
             - name: plugin-dir
               mountPath: /csi

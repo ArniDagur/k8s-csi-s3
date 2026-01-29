@@ -95,6 +95,27 @@ spec:
             - name: ADDRESS
               value: {{ .Values.kubeletPath }}/plugins/ru.yandex.s3.csi/csi.sock
           imagePullPolicy: "IfNotPresent"
+          {{- if or .Values.resourceLimits.controller.provisioner.cpuRequests .Values.resourceLimits.controller.provisioner.cpuLimits .Values.resourceLimits.controller.provisioner.memory }}
+          resources:
+            {{- if or .Values.resourceLimits.controller.provisioner.cpuRequests .Values.resourceLimits.controller.provisioner.memory }}
+            requests:
+              {{- if .Values.resourceLimits.controller.provisioner.cpuRequests }}
+              cpu: {{ .Values.resourceLimits.controller.provisioner.cpuRequests }}
+              {{- end }}
+              {{- if .Values.resourceLimits.controller.provisioner.memory }}
+              memory: {{ .Values.resourceLimits.controller.provisioner.memory }}
+              {{- end }}
+            {{- end }}
+            {{- if or .Values.resourceLimits.controller.provisioner.cpuLimits .Values.resourceLimits.controller.provisioner.memory }}
+            limits:
+              {{- if .Values.resourceLimits.controller.provisioner.cpuLimits }}
+              cpu: {{ .Values.resourceLimits.controller.provisioner.cpuLimits }}
+              {{- end }}
+              {{- if .Values.resourceLimits.controller.provisioner.memory }}
+              memory: {{ .Values.resourceLimits.controller.provisioner.memory }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
           volumeMounts:
             - name: socket-dir
               mountPath: {{ .Values.kubeletPath }}/plugins/ru.yandex.s3.csi
@@ -112,6 +133,27 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+          {{- if or .Values.resourceLimits.controller.csi.cpuRequests .Values.resourceLimits.controller.csi.cpuLimits .Values.resourceLimits.controller.csi.memory }}
+          resources:
+            {{- if or .Values.resourceLimits.controller.csi.cpuRequests .Values.resourceLimits.controller.csi.memory }}
+            requests:
+              {{- if .Values.resourceLimits.controller.csi.cpuRequests }}
+              cpu: {{ .Values.resourceLimits.controller.csi.cpuRequests }}
+              {{- end }}
+              {{- if .Values.resourceLimits.controller.csi.memory }}
+              memory: {{ .Values.resourceLimits.controller.csi.memory }}
+              {{- end }}
+            {{- end }}
+            {{- if or .Values.resourceLimits.controller.csi.cpuLimits .Values.resourceLimits.controller.csi.memory }}
+            limits:
+              {{- if .Values.resourceLimits.controller.csi.cpuLimits }}
+              cpu: {{ .Values.resourceLimits.controller.csi.cpuLimits }}
+              {{- end }}
+              {{- if .Values.resourceLimits.controller.csi.memory }}
+              memory: {{ .Values.resourceLimits.controller.csi.memory }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
           volumeMounts:
             - name: socket-dir
               mountPath: {{ .Values.kubeletPath }}/plugins/ru.yandex.s3.csi
