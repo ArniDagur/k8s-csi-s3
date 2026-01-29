@@ -69,6 +69,10 @@ spec:
         app: csi-s3-provisioner
     spec:
       serviceAccount: csi-s3-provisioner-sa
+      {{- if .Values.hostNetwork.controller }}
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      {{- end }}
       tolerations:
         - key: node-role.kubernetes.io/master
           operator: Exists

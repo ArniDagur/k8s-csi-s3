@@ -45,6 +45,11 @@ tolerations:
   node: []
   controller: []
 
+# Host network configuration (per service)
+hostNetwork:
+  node: false
+  controller: false
+
 nodeSelector: {}
 
 kubeletPath: /var/lib/kubelet
