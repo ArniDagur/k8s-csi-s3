@@ -58,19 +58,19 @@ kubeletPath: /var/lib/kubelet
 resourceLimits:
   node:
     registrar:
-      cpuRequests: "100m"
+      cpuRequests: "50m"
       cpuLimits: "1"
       memory: "64Mi"
     csi:
-      cpuRequests: "100m"
+      cpuRequests: "50m"
       cpuLimits: "1"
       memory: "64Mi"
   controller:
     provisioner:
-      cpuRequests: "100m"
+      cpuRequests: "50m"
       cpuLimits: "1"
       memory: "64Mi"
     csi:
-      cpuRequests: "100m"
+      cpuRequests: "50m"
       cpuLimits: "1"
       memory: "64Mi"

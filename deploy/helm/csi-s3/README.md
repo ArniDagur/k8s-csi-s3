@@ -41,15 +41,15 @@ The following table lists all configuration parameters and their default values.
 | `tolerations.controller`                            | Custom tolerations for the CSI-S3 controller (provisioner)             | []                                                     |
 | `hostNetwork.node`                                  | Run the CSI-S3 node driver (mounter) with host network                 | false                                                  |
 | `hostNetwork.controller`                            | Run the CSI-S3 controller (provisioner) with host network              | false                                                  |
-| `resourceLimits.node.registrar.cpuRequests`         | CPU requests for the node driver registrar sidecar                     | 100m                                                   |
+| `resourceLimits.node.registrar.cpuRequests`         | CPU requests for the node driver registrar sidecar                     | 50m                                                   |
 | `resourceLimits.node.registrar.cpuLimits`           | CPU limits for the node driver registrar sidecar                       | 1                                                      |
 | `resourceLimits.node.registrar.memory`              | Memory requests and limits for the node driver registrar               | 64Mi                                                   |
-| `resourceLimits.node.csi.cpuRequests`               | CPU requests for the CSI-S3 node plugin                                | 100m                                                   |
+| `resourceLimits.node.csi.cpuRequests`               | CPU requests for the CSI-S3 node plugin                                | 50m                                                   |
 | `resourceLimits.node.csi.cpuLimits`                 | CPU limits for the CSI-S3 node plugin                                  | 1                                                      |
 | `resourceLimits.node.csi.memory`                    | Memory requests and limits for the CSI-S3 node plugin                  | 64Mi                                                   |
-| `resourceLimits.controller.provisioner.cpuRequests` | CPU requests for the provisioner sidecar                               | 100m                                                   |
+| `resourceLimits.controller.provisioner.cpuRequests` | CPU requests for the provisioner sidecar                               | 50m                                                   |
 | `resourceLimits.controller.provisioner.cpuLimits`   | CPU limits for the provisioner sidecar                                 | 1                                                      |
 | `resourceLimits.controller.provisioner.memory`      | Memory requests and limits for the provisioner                         | 64Mi                                                   |
-| `resourceLimits.controller.csi.cpuRequests`         | CPU requests for the CSI-S3 controller plugin                          | 100m                                                   |
+| `resourceLimits.controller.csi.cpuRequests`         | CPU requests for the CSI-S3 controller plugin                          | 50m                                                   |
 | `resourceLimits.controller.csi.cpuLimits`           | CPU limits for the CSI-S3 controller plugin                            | 1                                                      |
 | `resourceLimits.controller.csi.memory`              | Memory requests and limits for the CSI-S3 controller                   | 64Mi                                                   |
